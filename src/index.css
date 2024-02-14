@@ -61,6 +61,9 @@ code {
   border-radius: 10px;
   background-color: #3cb0fd;
 }
+.xyz{
+  text-decoration: none;
+}
 
 .link:hover{
   cursor: pointer;
@@ -115,7 +118,9 @@ img{
   grid-row-gap: 13px;
   grid-template-columns: repeat(3, 1fr);
 }
-
+b{
+  font-size: 20px;
+}
 p{
   margin: 0;
 }
@@ -203,5 +208,81 @@ input{
   background-color: beige;
 }
 
+/* Form CSS */
+form {
+  font-family: sans-serif;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 40rem;
+  border: 1px solid;
+  margin-left: 34rem;
+}
 
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+label {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #f5f5f5;
+}
+
+textarea {
+  width: 90%;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#firstName{
+  margin-left: 3.5rem;
+}
+#lastName{
+  margin-left: 3.5rem;
+}
+#email{
+  margin-left: 4rem;
+}
+#password{
+  margin-left: 3.8rem;
+}
+.cart{
+  margin-top: 1rem;
+  margin-left: 24rem;
+  border: 1px solid;
+  height: 80vh;
+  border-radius: 40px;
+  margin-right: 13rem;
+}
+.cart_heading{
+  margin-left: 20rem;
+
+}
 
