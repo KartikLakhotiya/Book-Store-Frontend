@@ -29,7 +29,10 @@ function Sidebar(){
 
   return (
     <div className='sidebar'>
-      <Link to="/"><p className='title'>Book Store</p></Link>
+      <Link to="/">
+        <img src='logo.png' className='logo'></img>
+        {/* <p className='title'>Book Store</p> */}
+      </Link>
       
       <div>
         {/* {
@@ -135,8 +138,8 @@ function Footer(){
   return(
     <footer>
       <div id="css">
-        <p>Author : Kartik Lakhotiya</p>
-        <a href="mailto:hege@example.com">kartiklakhotiya19@gmail.com</a>
+        <p>Developed By : Kartik Lakhotiya</p>
+        <a href="mailto:hege@example.com" className='foot'>kartiklakhotiya19@gmail.com</a>
       </div>
     </footer>
   )
@@ -304,7 +307,7 @@ function Registration(){
           <p><b>Leave your Course feedback (optional):</b></p>
           <textarea id="address" name="address" rows="3" placeholder="Write your feedback here..." onChange={handleInputChange}></textarea>
           
-          <button type="submit">Submit</button>
+          <button type="submit" className='submit'>Submit</button>
           {
             isSuccess && <p>Form Submitted</p>
           }
