@@ -22,7 +22,6 @@ function Navbar(){
 function Sidebar(){
 
   const items = [
-    {text: "Home"},
     {text: "About"},
     {text: "Sign In"},
     {text: "Sign Out"},
@@ -33,7 +32,7 @@ function Sidebar(){
       <Link to="/"><p className='title'>Book Store</p></Link>
       
       <div>
-        {
+        {/* {
           items.map((i, idx) => {
             return (
               <div>
@@ -41,9 +40,14 @@ function Sidebar(){
               </div>
             )
           })
-        }
+        } */}
+        <Link className='xyz' to="/"><button className="link" >Home</button></Link>
+        <button className="link" >About</button>
+        <button className="link" >Sign In</button>
+        <button className="link" >Sign Out</button>
         <Link className="xyz"to="/contact-us"><button className="link" >Contact Us</button></Link>
         <Link className='xyz' to="/cart"><button className="link" >Show Cart</button></Link>
+
         
       </div>
     </div>
@@ -321,7 +325,7 @@ function Registration(){
           props.cart.map((b) => {
             return (
             <div>
-              <p>{b}</p> 
+              <p className='cart_details'>{b}</p> 
             </div>
             );
           })
@@ -340,17 +344,12 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/contact-us' exact element={<Registration/>}/>
-        <Route path='/' exact element={<BookListp/>}/>
+        <Route path='/' exact element={<BookListp  cart={cart} setCart={setCart}/>}/>
+        <Route path='/cart' exact element={<Cart cart={cart} setCart={setCart}/>}/>
       </Routes>
-      <Routes>
-        <Route path='cart' exact element={<Cart/>}/>
-      </Routes>
+     
       
       <Footer/>
-    </div>
-    <div>
-      <BookListp cart={cart} setCart={setCart}/>
-      <Cart cart={cart} setCart={setCart}/>
     </div>
     </BrowserRouter>
   )

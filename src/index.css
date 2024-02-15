@@ -277,12 +277,15 @@ textarea {
   margin-top: 1rem;
   margin-left: 24rem;
   border: 1px solid;
-  height: 80vh;
+  min-height: 80vh;
   border-radius: 40px;
   margin-right: 13rem;
 }
 .cart_heading{
   margin-left: 20rem;
 
+}
+.cart_details{
+  margin-left: 3rem;
 }
 
