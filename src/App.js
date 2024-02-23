@@ -59,9 +59,23 @@ function Sidebar(){
 
 
 const Bookp = (props) =>{
-  console.log(props.setCart)
-  const addToCart = (bookName) => {
-    props.setCart((oldArray) => [...oldArray,bookName]) 
+  // console.log(props.setCart)
+  console.log("book")
+  console.log(props)
+
+  const addToCart = (id) => {
+    console.log(id)
+
+    // props.setCart((oldArray) => [...oldArray,bookName]) 
+
+    let arr = [...props.bookState]
+    arr.forEach((item) => {
+      if(item.id === id) item.quantity ++
+    })
+
+    props.setBookState(arr)
+
+    // console.log(id)
   }
   return(
     <article className='content'>
@@ -69,70 +83,31 @@ const Bookp = (props) =>{
       <h2>{props.bookname}</h2>
       <p className='authnm'>{props.author}</p>
       <p>{props.price}</p>
-      <label>Quantity : </label><input type="number" placeholder="Enter Qty"/><br/>
+      <label>Quantity : </label><input type="number" value={props.quantity} placeholder="Enter Qty"/><br/>
 
-      <button className='btn' type="button" onClick={() => addToCart(props.bookname)}>Add to Cart</button>
+      <button className='btn' type="button" onClick={() => addToCart(props.id)}>Add to Cart</button>
     </article>
   )
 }
 const BookListp=(props)=>{
-  const books = [
-    {
-      id : 1,
-      name:"Fourth Wing",
-      author:"Rebecca Yaros",
-      image:"book.jpg",
-      price: "$499"
-    },
-    {
-      id : 2,
-      name:"A Tale of 2 Cities",
-      author:"Charles Dickens",
-      image:"book1.jpg",
-      price:"$599"
-    },
-    {
-      id : 3,
-      name:"Harry Potter",
-      author:"JK Rowling",
-      image:"book2.jpeg",
-      price:"$699"
-    },
-    {
-      id : 4,
-      name:"Lord of the Rings",
-      author:"J.R.R Toklien",
-      image:"book3.jpg",
-      price:"$399"
-    },
-    {
-      id : 5,
-      name:"Obssesed",
-      author:"James Patternson",
-      image:"book4.jpg",
-      price:"$649"
-    },
-    {
-      id : 6,
-      name:"It starts with us",
-      author:"Collen Hoover",
-      image:"book5.jpg",
-      price:"$749"
-    }
-  ];
+  console.log(props)
   return(
     <section className='booklist'>
       {
-        books.map((b) => {
+        props.bookState.map((b) => {
           return(
-            <Bookp bookname={b.name} author={b.author} image = {b.image} price={b.price} key={b.id} setCart={props.setCart}/> 
+            <Bookp bookState={props.bookState} bookname={b.name} author={b.author} quantity={b.quantity} image = {b.image} price={b.price} id={b.id} key={b.id}  setBookState={props.setBookState}/> 
           )
         })
       }
+
+
       
     </section>
   )
 }
+
+// <Bookp bookname={b.name} author={b.author} image = {b.image} price={b.price} key={b.id} setCart={props.setCart}/> 
 
 function Footer(){
   return(
@@ -176,87 +151,114 @@ function Registration(){
     
   }
 
-  const handleSubmit = (event) =>{
+  const handleSubmit = async (event) =>{
       event.preventDefault();
-      console.log(firstName,lastName,email,address)
-      console.log(address)
 
-      //all
-      if(firstName === ""){
-        alert("First Name Cannot be Empty");
-        return
-      }
-      if(lastName === ""){
-        alert("Last Name Cannot be Empty");
-        return
-      }
-      if(email === ""){
-        alert("Email Cannot be Empty");
-        return
-      }
-      if(password === ""){
-        alert("Password Cannot be Empty");
-        return
-      }
-      if(confirmPassword === ""){
-        alert("Confirm Password Cannot be Empty");
-        return
-      }
-      if(address === ""){
-        alert("Please fill the feedback textbox");
-        return
+      const data = {
+        'firstName' : firstName,
+        'lastName': lastName
       }
 
-      //email
-      var atIdx = email.indexOf("@")
-      var dotIdx = email.indexOf(".")
-      if(atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx){
-          console.log('correct')
-      }
-      else{
-          alert("Invalid Email")
-          return
+      const response = await fetch('http://localhost:4001/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        console.log('Form submitted successfully');
+        // Handle success response
+      } else {
+        console.log('Form submission failed');
+        // Handle error response
       }
 
-      //password
-      var upper = /[A-Z]/.test(password)
-      var lower = /[a-z]/.test(password)
-      var number = /[0-9]/.test(password)
-      var special = /[!@#$%^&*()_+=-{}.,;'"]/.test(password)
-      var len = password.length
-      if(upper && lower && number && special && len>=8){
-        console.log("Correct")
-      }
-      else{
-        alert("Invalid Password.")
-        return
-      }
 
-      if(confirmPassword === password){
-        console.log("ok")
-      }
-      else{
-        alert("Password Should be same.")
-      }
 
-      // check boxes
-      let count = 0
-      let data = event.target.issues;
-      console.log(data)
-      console.log(data[0].checked)
-      console.log(data[1].checked)
 
-      for(let i = 0 ; i<data.length;i++){
-        if(data[i].checked){
-          count ++;
-        }
-      }
-      if(count<2){
-        alert("Select At Least 2 Electives.")
-        return
-      }
+
+
+      // console.log(firstName,lastName,email,address)
+      // console.log(address)
+
+      // //all
+      // if(firstName === ""){
+      //   alert("First Name Cannot be Empty");
+      //   return
+      // }
+      // if(lastName === ""){
+      //   alert("Last Name Cannot be Empty");
+      //   return
+      // }
+      // if(email === ""){
+      //   alert("Email Cannot be Empty");
+      //   return
+      // }
+      // if(password === ""){
+      //   alert("Password Cannot be Empty");
+      //   return
+      // }
+      // if(confirmPassword === ""){
+      //   alert("Confirm Password Cannot be Empty");
+      //   return
+      // }
+      // if(address === ""){
+      //   alert("Please fill the feedback textbox");
+      //   return
+      // }
+
+      // //email
+      // var atIdx = email.indexOf("@")
+      // var dotIdx = email.indexOf(".")
+      // if(atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx){
+      //     console.log('correct')
+      // }
+      // else{
+      //     alert("Invalid Email")
+      //     return
+      // }
+
+      // //password
+      // var upper = /[A-Z]/.test(password)
+      // var lower = /[a-z]/.test(password)
+      // var number = /[0-9]/.test(password)
+      // var special = /[!@#$%^&*()_+=-{}.,;'"]/.test(password)
+      // var len = password.length
+      // if(upper && lower && number && special && len>=8){
+      //   console.log("Correct")
+      // }
+      // else{
+      //   alert("Invalid Password.")
+      //   return
+      // }
+
+      // if(confirmPassword === password){
+      //   console.log("ok")
+      // }
+      // else{
+      //   alert("Password Should be same.")
+      // }
+
+      // // check boxes
+      // let count = 0
+      // let data = event.target.issues;
+      // console.log(data)
+      // console.log(data[0].checked)
+      // console.log(data[1].checked)
+
+      // for(let i = 0 ; i<data.length;i++){
+      //   if(data[i].checked){
+      //     count ++;
+      //   }
+      // }
+      // if(count<2){
+      //   alert("Select At Least 2 Electives.")
+      //   return
+      // }
       
-      setIsSuccess(true)
+      // setIsSuccess(true)
 
   }
 
@@ -320,25 +322,85 @@ function Registration(){
 
   
   const Cart = (props) =>{
-    console.log(props.cart)
+    // console.log(props.cart)
+
+    let cart = props.bookState.filter((book) =>  book.quantity > 0) // filter function 
     return(
       <div className='cart'>
         <h1 className='cart_heading'>Below is Your Cart</h1>
         {
-          props.cart.map((b) => {
-            return (
-            <div>
-              <p className='cart_details'>{b}</p> 
-            </div>
-            );
-          })
+          // props.cart.map((b) => {
+          //   return (
+          //   <div>
+          //     <p className='cart_details'>{b}</p> 
+          //   </div>
+          //   );
+          // })
         }
+        {
+        cart.map((b) => {
+          return(
+            <Bookp bookname={b.name} author={b.author} image = {b.image} price={b.price} key={b.id} setCart={props.setCart}/> 
+          )
+        })
+      }
       </div>
     )
   }
 
 function App() {
-  const [cart,setCart] = useState([]);
+  const books = [
+    {
+      id : 1,
+      name:"Fourth Wing",
+      author:"Rebecca Yaros",
+      image:"book.jpg",
+      price: "$499",
+      quantity : 0
+    },
+    {
+      id : 2,
+      name:"A Tale of 2 Cities",
+      author:"Charles Dickens",
+      image:"book1.jpg",
+      price:"$599",
+      quantity : 2
+    },
+    {
+      id : 3,
+      name:"Harry Potter",
+      author:"JK Rowling",
+      image:"book2.jpeg",
+      price:"$699",
+      quantity : 3
+    },
+    {
+      id : 4,
+      name:"Lord of the Rings",
+      author:"J.R.R Toklien",
+      image:"book3.jpg",
+      price:"$399",
+      quantity : 4
+    },
+    {
+      id : 5,
+      name:"Obssesed",
+      author:"James Patternson",
+      image:"book4.jpg",
+      price:"$649",
+      quantity : 0
+    },
+    {
+      id : 6,
+      name:"It starts with us",
+      author:"Collen Hoover",
+      image:"book5.jpg",
+      price:"$749",
+      quantity : 0
+    }
+  ];
+  const [bookState, setBookState] = useState(books);
+  // const [cart,setCart] = useState([]);
   return(
     <BrowserRouter>
     <div>
@@ -347,8 +409,8 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/contact-us' exact element={<Registration/>}/>
-        <Route path='/' exact element={<BookListp  cart={cart} setCart={setCart}/>}/>
-        <Route path='/cart' exact element={<Cart cart={cart} setCart={setCart}/>}/>
+        <Route path='/' exact element={<BookListp bookState={bookState} setBookState={setBookState}/> }/>
+        <Route path='/cart' exact element={<Cart bookState={bookState} setBookState={setBookState}/>}/>
       </Routes>
      
       
@@ -359,3 +421,6 @@ function App() {
 }
 
 export default App;
+
+// cart={cart} setCart={setCart}
+// cart={cart} setCart={setCart}
