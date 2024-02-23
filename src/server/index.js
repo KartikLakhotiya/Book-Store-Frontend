@@ -1,4 +1,5 @@
 // Registration form backend
+console.log("Hello")
 
 const express = require('express');
 const app = express();
