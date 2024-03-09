@@ -166,6 +166,7 @@ function Registration(){
         },
         body: JSON.stringify(data),
       });
+      console.log(response)
 
       if (response.ok) {
         console.log('Form submitted successfully');
@@ -180,85 +181,85 @@ function Registration(){
 
 
 
-      // console.log(firstName,lastName,email,address)
-      // console.log(address)
+      console.log(firstName,lastName,email,address)
+      console.log(address)
 
-      // //all
-      // if(firstName === ""){
-      //   alert("First Name Cannot be Empty");
-      //   return
-      // }
-      // if(lastName === ""){
-      //   alert("Last Name Cannot be Empty");
-      //   return
-      // }
-      // if(email === ""){
-      //   alert("Email Cannot be Empty");
-      //   return
-      // }
-      // if(password === ""){
-      //   alert("Password Cannot be Empty");
-      //   return
-      // }
-      // if(confirmPassword === ""){
-      //   alert("Confirm Password Cannot be Empty");
-      //   return
-      // }
-      // if(address === ""){
-      //   alert("Please fill the feedback textbox");
-      //   return
-      // }
+      //all
+      if(firstName === ""){
+        alert("First Name Cannot be Empty");
+        return
+      }
+      if(lastName === ""){
+        alert("Last Name Cannot be Empty");
+        return
+      }
+      if(email === ""){
+        alert("Email Cannot be Empty");
+        return
+      }
+      if(password === ""){
+        alert("Password Cannot be Empty");
+        return
+      }
+      if(confirmPassword === ""){
+        alert("Confirm Password Cannot be Empty");
+        return
+      }
+      if(address === ""){
+        alert("Please fill the feedback textbox");
+        return
+      }
 
-      // //email
-      // var atIdx = email.indexOf("@")
-      // var dotIdx = email.indexOf(".")
-      // if(atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx){
-      //     console.log('correct')
-      // }
-      // else{
-      //     alert("Invalid Email")
-      //     return
-      // }
+      //email
+      var atIdx = email.indexOf("@")
+      var dotIdx = email.indexOf(".")
+      if(atIdx > 0 && dotIdx > atIdx + 1 && email.length > dotIdx){
+          console.log('correct')
+      }
+      else{
+          alert("Invalid Email")
+          return
+      }
 
-      // //password
-      // var upper = /[A-Z]/.test(password)
-      // var lower = /[a-z]/.test(password)
-      // var number = /[0-9]/.test(password)
-      // var special = /[!@#$%^&*()_+=-{}.,;'"]/.test(password)
-      // var len = password.length
-      // if(upper && lower && number && special && len>=8){
-      //   console.log("Correct")
-      // }
-      // else{
-      //   alert("Invalid Password.")
-      //   return
-      // }
+      //password
+      var upper = /[A-Z]/.test(password)
+      var lower = /[a-z]/.test(password)
+      var number = /[0-9]/.test(password)
+      var special = /[!@#$%^&*()_+=-{}.,;'"]/.test(password)
+      var len = password.length
+      if(upper && lower && number && special && len>=8){
+        console.log("Correct")
+      }
+      else{
+        alert("Invalid Password.")
+        return
+      }
 
-      // if(confirmPassword === password){
-      //   console.log("ok")
-      // }
-      // else{
-      //   alert("Password Should be same.")
-      // }
+      if(confirmPassword === password){
+        console.log("ok")
+      }
+      else{
+        alert("Password Should be same.")
+      }
 
-      // // check boxes
-      // let count = 0
-      // let data = event.target.issues;
-      // console.log(data)
-      // console.log(data[0].checked)
-      // console.log(data[1].checked)
+      // check boxes
+      let count = 0
+      let data1 = event.target.issues;
+      console.log(data1)
+      console.log(data1[0].checked)
+      console.log(data1[1].checked)
 
-      // for(let i = 0 ; i<data.length;i++){
-      //   if(data[i].checked){
-      //     count ++;
-      //   }
-      // }
-      // if(count<2){
-      //   alert("Select At Least 2 Electives.")
-      //   return
-      // }
+      for(let i = 0 ; i<data1.length;i++){
+        if(data1[i].checked){
+          count ++;
+        }
+      }
+      if(count<2){
+        alert("Select At Least 2 Electives.")
+        return
+      }
       
-      // setIsSuccess(true)
+      setIsSuccess(true)
 
   }
 
