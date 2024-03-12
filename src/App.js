@@ -45,7 +45,7 @@ function Sidebar(){
           })
         } */}
         <Link className='xyz' to="/"><button className="link" >Home</button></Link>
-        <button className="link" >About</button>
+        <Link className="xyz"to="/about"><button className="link" >About Us</button></Link>
         <button className="link" >Sign In</button>
         <button className="link" >Sign Out</button>
         <Link className="xyz"to="/contact-us"><button className="link" >Contact Us</button></Link>
@@ -117,6 +117,13 @@ function Footer(){
         <a href="mailto:hege@example.com" className='foot'>kartiklakhotiya19@gmail.com</a>
       </div>
     </footer>
+  )
+}
+
+function About(){
+  return(
+      <h1 className='about'>This is Our About Us page</h1>
+    
   )
 }
 
@@ -408,6 +415,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/contact-us' exact element={<Registration/>}/>
+        <Route path='/about' exact element={<About/>}/>
         <Route path='/' exact element={<BookListp bookState={bookState} setBookState={setBookState}/> }/>
         <Route path='/cart' exact element={<Cart bookState={bookState} setBookState={setBookState}/>}/>
       </Routes>

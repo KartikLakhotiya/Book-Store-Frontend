@@ -9,10 +9,10 @@ const mysql = require('mysql2/promise');
 
 
 const pool = mysql.createPool({
-    host:'localhost',
+    host:'127.0.0.1',
     user:'root',
-    port:'3306',
-    password:'',
+    port:'3309',
+    password:'root',
     database:'awt'
 })
 
