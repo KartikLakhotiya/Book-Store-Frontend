@@ -1,3 +1,5 @@
+// Http module with path. Parsed path means without (/)
+
 const http = require('http');
 const url = require('url');
 const port = 3003

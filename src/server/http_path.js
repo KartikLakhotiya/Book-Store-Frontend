@@ -1,3 +1,5 @@
+// HTTP Module with path including slash(/)
+
 const http = require('http');
 const { hostname } = require('os');
 const port = 3002;

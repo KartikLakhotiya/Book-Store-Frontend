@@ -168,7 +168,7 @@ function Registration(){
         'password': password
       }
 
-      const response = await fetch('http://localhost:4002/submit-form', {
+      const response = await fetch('http://localhost:4001/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
