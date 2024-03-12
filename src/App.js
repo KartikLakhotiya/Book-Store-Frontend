@@ -156,10 +156,12 @@ function Registration(){
 
       const data = {
         'firstName' : firstName,
-        'lastName': lastName
+        'lastName': lastName,
+        'email' : email,
+        'password': password
       }
 
-      const response = await fetch('http://localhost:4001/submit-form', {
+      const response = await fetch('http://localhost:4002/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,10 +177,6 @@ function Registration(){
         console.log('Form submission failed');
         // Handle error response
       }
-
-
-
-
 
 
       console.log(firstName,lastName,email,address)
