@@ -168,6 +168,7 @@ function Registration(){
         'password': password
       }
 
+      // Code if you are using index.js (Display form data in Terminal)
       const response = await fetch('http://localhost:4001/submit-form', {
         method: 'POST',
         headers: {
@@ -179,10 +180,30 @@ function Registration(){
 
       if (response.ok) {
         console.log('Form submitted successfully');
-        // Handle success response
+        
       } else {
         console.log('Form submission failed');
-        // Handle error response
+        
+      }
+
+
+      
+      // Code if you are using sql.js file (insert operation)
+      const response1 = await fetch('http://localhost:4002/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(response1)
+
+      if (response1.ok) {
+        console.log('Form submitted successfully');
+        
+      } else {
+        console.log('Form submission failed');
+        
       }
 
 
@@ -406,7 +427,7 @@ function App() {
     }
   ];
   const [bookState, setBookState] = useState(books);
-  // const [cart,setCart] = useState([]);
+  const [cart,setCart] = useState([]);
   return(
     <BrowserRouter>
     <div>
