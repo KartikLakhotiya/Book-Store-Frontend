@@ -8,13 +8,12 @@ import { useState } from "react";
 function Navbar(){
   return(
     <div class="navbar">
-            <div class="navdiv"><marquee>Get 70% Off</marquee>
-              
-            </div>
+      <div class="navdiv"><marquee>Get 70% Off</marquee>
+      </div>
+    </div>
 
             
         
-    </div>
   )
 }
 
